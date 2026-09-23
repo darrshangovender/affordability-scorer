@@ -1,0 +1,68 @@
+# --- Environment / secrets ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+build/
+.uv/
+
+# --- Node / TypeScript ---
+node_modules/
+.next/
+.turbo/
+.cache/
+.parcel-cache/
+*.tsbuildinfo
+.pnpm-store/
+coverage/
+
+# --- IDE / OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+
+# --- Data / models / logs ---
+# Downloaded datasets and trained artefacts stay out of git. The synthetic
+# demo statements under demo/data/ are deliberately committed (CI and the
+# eval read them), so they are carved back in below.
+data/*
+!data/*.yml
+!data/*.yaml
+*.csv
+*.parquet
+*.pkl
+*.joblib
+*.h5
+mlruns/
+logs/
+*.log
+!demo/data/**
+!demo/data/**/*.csv
+
+# --- Benchmarks ---
+benchmarks/results.json
+eval/results.json
+
+# --- Docker ---
+docker-compose.override.yml
+
+# --- Misc ---
+tmp/
+.scratch/

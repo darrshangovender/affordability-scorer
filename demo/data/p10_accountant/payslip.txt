@@ -1,0 +1,17 @@
+MARLIN CHARTERED ACCOUNTANTS
+PAYSLIP
+Employer: Marlin Chartered Accountants
+Employee No: EMP-0010
+ID Number: 7401212713088
+Pay Date: 25/08/2026
+Period: 01/08/2026 - 31/08/2026
+
+Gross Pay: R 47,000.00
+
+Deductions:
+  PAYE: R 8,297.88
+  UIF: R 177.12
+  Pension Fund: R 3,525.00
+Total Deductions: R 12,000.00
+
+Net Pay: R 35,000.00

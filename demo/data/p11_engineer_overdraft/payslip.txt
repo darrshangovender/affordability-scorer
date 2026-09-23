@@ -1,0 +1,17 @@
+TRIDENT CONSULTING ENGINEERS
+PAYSLIP
+Employer: Trident Consulting Engineers
+Employee No: EMP-0011
+ID Number: 8804040046085
+Pay Date: 25/08/2026
+Period: 01/08/2026 - 31/08/2026
+
+Gross Pay: R 62,000.00
+
+Deductions:
+  PAYE: R 12,172.88
+  UIF: R 177.12
+  Pension Fund: R 4,650.00
+Total Deductions: R 17,000.00
+
+Net Pay: R 45,000.00

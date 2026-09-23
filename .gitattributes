@@ -1,0 +1,3 @@
+# The demo statements are compared byte-for-byte against the seeded generator
+# in tests; keep every text file LF on every platform.
+* text=auto eol=lf

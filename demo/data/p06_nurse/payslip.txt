@@ -1,0 +1,17 @@
+COASTAL CARE HOSPITAL GROUP
+PAYSLIP
+Employer: Coastal Care Hospital Group
+Employee No: EMP-0006
+ID Number: 8707115179089
+Pay Date: 25/08/2026
+Period: 01/08/2026 - 31/08/2026
+
+Gross Pay: R 24,000.00
+
+Deductions:
+  PAYE: R 3,522.88
+  UIF: R 177.12
+  Pension Fund: R 1,800.00
+Total Deductions: R 5,500.00
+
+Net Pay: R 18,500.00

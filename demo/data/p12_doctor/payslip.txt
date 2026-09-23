@@ -1,0 +1,17 @@
+RIDGE MEDICAL PARTNERS
+PAYSLIP
+Employer: Ridge Medical Partners
+Employee No: EMP-0012
+ID Number: 7906213574081
+Pay Date: 25/08/2026
+Period: 01/08/2026 - 31/08/2026
+
+Gross Pay: R 125,000.00
+
+Deductions:
+  PAYE: R 30,447.88
+  UIF: R 177.12
+  Pension Fund: R 9,375.00
+Total Deductions: R 40,000.00
+
+Net Pay: R 85,000.00

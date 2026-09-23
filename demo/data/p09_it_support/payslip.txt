@@ -1,0 +1,17 @@
+HARBOUR SYSTEMS (PTY) LTD
+PAYSLIP
+Employer: Harbour Systems (Pty) Ltd
+Employee No: EMP-0009
+ID Number: 8708281542084
+Pay Date: 25/08/2026
+Period: 01/08/2026 - 31/08/2026
+
+Gross Pay: R 37,000.00
+
+Deductions:
+  PAYE: R 6,047.88
+  UIF: R 177.12
+  Pension Fund: R 2,775.00
+Total Deductions: R 9,000.00
+
+Net Pay: R 28,000.00

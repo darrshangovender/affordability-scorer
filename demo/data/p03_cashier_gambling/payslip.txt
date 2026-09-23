@@ -1,0 +1,16 @@
+COASTAL RETAIL HOLDINGS
+PAYSLIP
+Employer: Coastal Retail Holdings
+Employee No: EMP-0003
+ID Number: 9105154904088
+Pay Date: 25/08/2026
+Period: 01/08/2026 - 31/08/2026
+
+Gross Pay: R 11,900.00
+
+Deductions:
+  PAYE: R 1,981.00
+  UIF: R 119.00
+Total Deductions: R 2,100.00
+
+Net Pay: R 9,800.00

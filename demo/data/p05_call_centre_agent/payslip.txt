@@ -1,0 +1,17 @@
+NEXA CONTACT SOLUTIONS
+PAYSLIP
+Employer: Nexa Contact Solutions
+Employee No: EMP-0005
+ID Number: 8401099065080
+Pay Date: 25/08/2026
+Period: 01/08/2026 - 31/08/2026
+
+Gross Pay: R 18,500.00
+
+Deductions:
+  PAYE: R 2,135.38
+  UIF: R 177.12
+  Pension Fund: R 1,387.50
+Total Deductions: R 3,700.00
+
+Net Pay: R 14,800.00

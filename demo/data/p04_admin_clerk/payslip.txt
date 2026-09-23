@@ -1,0 +1,17 @@
+DOLPHIN COAST LOGISTICS
+PAYSLIP
+Employer: Dolphin Coast Logistics
+Employee No: EMP-0004
+ID Number: 9505198190083
+Pay Date: 25/08/2026
+Period: 01/08/2026 - 31/08/2026
+
+Gross Pay: R 15,200.00
+
+Deductions:
+  PAYE: R 1,508.00
+  UIF: R 152.00
+  Pension Fund: R 1,140.00
+Total Deductions: R 2,800.00
+
+Net Pay: R 12,400.00

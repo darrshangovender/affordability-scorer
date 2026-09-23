@@ -1,0 +1,16 @@
+BAYVIEW HOUSEHOLD SERVICES
+PAYSLIP
+Employer: Bayview Household Services
+Employee No: EMP-0001
+ID Number: 9702255214084
+Pay Date: 25/08/2026
+Period: 01/08/2026 - 31/08/2026
+
+Gross Pay: R 6,800.00
+
+Deductions:
+  PAYE: R 532.00
+  UIF: R 68.00
+Total Deductions: R 600.00
+
+Net Pay: R 6,200.00

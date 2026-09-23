@@ -1,0 +1,17 @@
+KINGFISHER PHARMA DISTRIBUTION
+PAYSLIP
+Employer: Kingfisher Pharma Distribution
+Employee No: EMP-0008
+ID Number: 9205244136087
+Pay Date: 25/08/2026
+Period: 01/08/2026 - 31/08/2026
+
+Gross Pay: R 31,500.00
+
+Deductions:
+  PAYE: R 4,960.38
+  UIF: R 177.12
+  Pension Fund: R 2,362.50
+Total Deductions: R 7,500.00
+
+Net Pay: R 24,000.00

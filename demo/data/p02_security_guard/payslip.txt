@@ -1,0 +1,16 @@
+UMKHONTO PROTECTION SERVICES
+PAYSLIP
+Employer: Umkhonto Protection Services
+Employee No: EMP-0002
+ID Number: 9111136879083
+Pay Date: 28/08/2026
+Period: 01/08/2026 - 31/08/2026
+
+Gross Pay: R 10,500.00
+
+Deductions:
+  PAYE: R 1,495.00
+  UIF: R 105.00
+Total Deductions: R 1,600.00
+
+Net Pay: R 8,900.00

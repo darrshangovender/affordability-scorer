@@ -1,0 +1,17 @@
+PROVINCIAL EDUCATION DEPARTMENT
+PAYSLIP
+Employer: Provincial Education Department
+Employee No: EMP-0007
+ID Number: 9311279966081
+Pay Date: 25/08/2026
+Period: 01/08/2026 - 31/08/2026
+
+Gross Pay: R 29,500.00
+
+Deductions:
+  PAYE: R 4,810.38
+  UIF: R 177.12
+  Pension Fund: R 2,212.50
+Total Deductions: R 7,200.00
+
+Net Pay: R 22,300.00

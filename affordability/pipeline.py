@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Sequence
 
 from affordability.calibrate import Calibrator, default_calibrator
 from affordability.fairness import AuditReport, proxy_audit

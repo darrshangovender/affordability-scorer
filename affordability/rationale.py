@@ -85,6 +85,14 @@ def build_rationale(
         ),
         f"Score {result.score}/100, band '{result.band}'.",
     )
+    uncapped = result.base + result.raw_points
+    if uncapped != result.score:
+        # Without this line the listed points add up to a number the reader never sees
+        # (e.g. +70 on a base of 50 is 120, shown as 100).
+        facts += (
+            f"The points below total {result.raw_points:+d} on a base of {result.base} "
+            f"({uncapped}); the score is capped to the 0-100 range.",
+        )
     reasons = tuple(r for (_, _, _, r) in contributions)
 
     def lines(items: list[tuple[str, float, int, str]]) -> str:

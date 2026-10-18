@@ -9,8 +9,8 @@ from __future__ import annotations
 
 import statistics
 from collections import defaultdict
+from collections.abc import Iterable
 from datetime import timedelta
-from typing import Iterable
 
 from pydantic import BaseModel, ConfigDict, Field
 

@@ -111,8 +111,8 @@ def test_audit_report_summary_and_dict():
 
 
 def test_audit_description_is_redacted():
-    report = proxy_audit([_t("TITHE CHURCH ID 9205244136087")])
-    assert "9205244136087" not in report.excluded[0].description
+    report = proxy_audit([_t("TITHE CHURCH ID 9202304136081")])
+    assert "9202304136081" not in report.excluded[0].description
 
 
 def test_disparate_impact_is_about_one_on_random_groups():

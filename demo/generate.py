@@ -284,11 +284,17 @@ def _weekday_shift(d: date) -> date:
 
 
 def synthetic_sa_id(rng: np.random.Generator) -> str:
-    """Luhn-valid 13-digit ID with a plausible date prefix. Fictional."""
+    """Luhn-valid 13-digit ID that passes ``is_sa_id`` but cannot belong to anyone.
+
+    The date prefix is 30 or 31 February, which no real ID carries, so a synthetic
+    number can never collide with a real person's ID (a random plausible date plus a
+    random sequence number very often would). The month/day draws are kept so the rest
+    of the seeded output is unchanged.
+    """
     yy = int(rng.integers(70, 99))
-    mm = int(rng.integers(1, 13))
-    dd = int(rng.integers(1, 29))
-    body = f"{yy:02d}{mm:02d}{dd:02d}{int(rng.integers(0, 9999)):04d}08"
+    int(rng.integers(1, 13))  # month draw kept for RNG-stream stability
+    dd = 30 + int(rng.integers(1, 29)) % 2
+    body = f"{yy:02d}02{dd:02d}{int(rng.integers(0, 9999)):04d}08"
     for check in range(10):
         if luhn_valid(body + str(check)):
             return body + str(check)

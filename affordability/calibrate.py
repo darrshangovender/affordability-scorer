@@ -11,8 +11,8 @@ outcomes — see the README's Limitations.
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from functools import lru_cache
-from typing import Sequence
 
 import numpy as np
 from sklearn.isotonic import IsotonicRegression

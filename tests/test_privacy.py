@@ -1,5 +1,5 @@
 import logging
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import pytest
 from pydantic import ValidationError
@@ -16,7 +16,7 @@ from affordability.privacy import (
     subject_token,
 )
 
-SA_ID = "9205244136087"  # fictional, Luhn-valid
+SA_ID = "9202304136081"  # fictional, Luhn-valid
 
 
 def test_luhn():
@@ -28,7 +28,7 @@ def test_luhn():
 def test_is_sa_id():
     assert is_sa_id(SA_ID)
     assert not is_sa_id("9213444136087")  # month 13
-    assert not is_sa_id("9205244136287")  # citizenship digit 2
+    assert not is_sa_id("9202304136289")  # citizenship digit 2
     assert not is_sa_id("9205244136080")  # bad checksum
 
 
@@ -117,7 +117,7 @@ def test_access_log_records_redacted_events():
 def test_purge_older_than_days():
     log = AccessLog(retention_days=90)
     p = ScoringPurpose(purpose="tenant_affordability_assessment", consent_ref="c-01", requested_by="agent")
-    now = datetime(2026, 9, 1, tzinfo=timezone.utc)
+    now = datetime(2026, 9, 1, tzinfo=UTC)
     log.record("score", p, "a", now=now - timedelta(days=100))
     log.record("score", p, "b", now=now - timedelta(days=10))
     log.record("score", p, "c", now=now)

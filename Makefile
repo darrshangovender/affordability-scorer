@@ -16,4 +16,5 @@ data:
 	python demo/generate.py
 
 clean:
-	rm -rf .pytest_cache **/__pycache__ *.egg-info .ruff_cache
+	rm -rf .pytest_cache .ruff_cache *.egg-info
+	find . -name __pycache__ -type d -prune -exec rm -rf {} +

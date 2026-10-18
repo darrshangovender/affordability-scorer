@@ -12,7 +12,7 @@ import hashlib
 import json
 import logging
 import re
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
@@ -111,7 +111,7 @@ class ScoringPurpose(BaseModel):
     consent_ref: str = Field(min_length=3)
     requested_by: str = Field(min_length=1)
     lawful_basis: LawfulBasis = "consent"
-    recorded_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    recorded_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
 
     @field_validator("purpose")
     @classmethod
@@ -161,7 +161,7 @@ class AccessLog:
         now: datetime | None = None,
     ) -> AccessEvent:
         event = AccessEvent(
-            at=now or datetime.now(timezone.utc),
+            at=now or datetime.now(UTC),
             action=action,
             purpose=purpose.purpose,
             consent_ref=purpose.consent_ref,
@@ -182,7 +182,7 @@ class AccessLog:
     def purge(self, older_than_days: int | None = None, *, now: datetime | None = None) -> int:
         """Drop events older than the retention window. Returns how many were removed."""
         days = self.retention_days if older_than_days is None else older_than_days
-        cutoff = (now or datetime.now(timezone.utc)) - timedelta(days=days)
+        cutoff = (now or datetime.now(UTC)) - timedelta(days=days)
         before = len(self._events)
         self._events = [e for e in self._events if e.at >= cutoff]
         return before - len(self._events)

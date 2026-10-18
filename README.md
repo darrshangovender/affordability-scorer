@@ -31,14 +31,15 @@ affordability score --statement demo/data/p07_teacher/statement.csv \
 affordability score ... --json               # full assessment: features, points, audit, tamper, rationales
 affordability audit  --statement demo/data/p06_nurse/statement.txt      # what the proxy audit excluded and why
 affordability tamper --statement demo/data/t01_edited_salary/statement.csv --payslip demo/data/t01_edited_salary/payslip.txt
-python eval/run.py                           # the table under "The result", offline
+python eval/run.py                           # the table under "Results", offline
 ```
 
 ```python
 from affordability import ScoringPurpose, score_application
 
 purpose = ScoringPurpose(purpose="tenant_affordability_assessment", consent_ref="APP-2041", requested_by="agent-17")
-a = score_application(statement="statement.csv", payslip="payslip.txt", rent=7800, purpose=purpose)
+d = "demo/data/p07_teacher/"
+a = score_application(statement=d + "statement.csv", payslip=d + "payslip.txt", rent=7800, purpose=purpose)
 a.score.score, a.score.band, a.tamper.risk        # (74, 'adequate', 'low')
 print(a.rationale.tenant)                         # same reasons the landlord sees
 ```
@@ -60,7 +61,7 @@ Four statement layouts are recognised without naming the bank (FNB-style signed 
 
 ## The scoring model
 
-Score = 50 + Σ points, clipped to 0–100. Bands: **strong** 75–100 · **adequate** 60–74 · **marginal** 45–59 · **insufficient** 0–44. Upper bounds are inclusive; `explain()` returns exactly these rows, ordered by absolute impact, and they sum to the score.
+Score = 50 + Σ points, clipped to 0–100. Bands: **strong** 75–100 · **adequate** 60–74 · **marginal** 45–59 · **insufficient** 0–44. Upper bounds are inclusive; `explain()` returns exactly these rows, ordered by absolute impact, and they sum to the raw points. The points range from −135 to +70, so the clip does apply (a strong applicant can reach 50 + 70 = 120); when it does, both rationales say so in a fact line rather than leaving the listed points to add up to a number the reader never sees.
 
 | feature | bands → points | why |
 |---|---|---|
@@ -76,9 +77,9 @@ Score = 50 + Σ points, clipped to 0–100. Bands: **strong** 75–100 · **adeq
 
 Calibration re-labels the score axis as P(no missed payment in 12 months) with isotonic regression fitted on a **synthetic** labelled set; it is illustrative until refit on real outcomes.
 
-## The result
+## Results
 
-`python eval/run.py`, offline, on the seeded demo set (12 clean personas from domestic worker to doctor, 2 tampered variants):
+`python eval/run.py` (`make bench`), offline, on the seeded **synthetic** demo set (12 clean personas from domestic worker to doctor, 2 tampered variants). Regenerated on 14 October 2026; every number below is printed by that script:
 
 | check | result |
 |---|---|
@@ -88,7 +89,12 @@ Calibration re-labels the score axis as P(no missed payment in 12 months) with i
 | Tamper detection (risk = high on 2 tampered + 12 clean) | precision 100%, recall 100% — edited salary caught by running balance + payslip; duplicated salary caught by reference |
 | Disparate impact on random no-signal groups (four-fifths ratio, 50 splits) | mean 0.958 (min 0.886) over 1 200 persona variants; mean 0.963 (min 0.904) over 5 000 synthetic vectors |
 
-The one miss is the security guard: rent at 39% of income and a Capfin loan put him at 57 (marginal) although his label says he paid every month. The disparate-impact ratios sit below 1.0 only by sampling noise on a coin-flip split; the eval fails if they drift below 0.90 / 0.95.
+How to read these:
+
+- **Classifier 100%** is measured against the generator's own vocabulary, which the keyword rules were written for. It shows the rules and generator agree, not accuracy on real bank exports.
+- **Band vs outcome (11/12)**: the 12-month outcomes are labels the author wrote into the generator, so this checks the band table against the author's own expectations on twelve invented people. It is not a validation against real repayment. The one miss is the security guard: rent at 39% of income and a Capfin loan put him at 57 (marginal) although his label says he paid every month.
+- **Calibration** is fitted on synthetic labels; the probabilities are illustrative until refit on real outcomes.
+- **Disparate impact** is computed on random coin-flip groups that carry no signal by construction, so a ratio near 1.0 is expected. It checks that the harness and scorer do not introduce an artefact; it says nothing about disparate impact on real protected groups, which cannot be measured without such data. The ratios sit below 1.0 only by sampling noise; the eval fails if the mean ratios drift below 0.90 (persona variants) / 0.95 (synthetic vectors).
 
 ## Design decisions
 
@@ -106,6 +112,7 @@ The one miss is the security guard: rent at 39% of income and a Capfin loan put 
 - **No bureau data.** Existing arrears, judgments and other accounts are invisible; this is one input to a decision, not the decision.
 - **Tamper checks catch naive edits only.** A statement re-chained with consistent balances and a matching forged payslip passes. Verify originals with the bank for anything that matters.
 - **Twelve personas is a demonstration, not a validation.** The band-vs-outcome figure is on hand-labelled synthetic cases.
+- **No real-group fairness measurement.** The fairness guarantees are structural (no protected fields, proxy audit). The disparate-impact figures use random groups and cannot show the absence of bias against real groups.
 
 ## Project layout
 
@@ -122,19 +129,19 @@ affordability/
   rationale.py         landlord + tenant text; optional ModelClient polish with integrity check; MockModel
   pipeline.py          score_application()
   cli.py               affordability score | audit | tamper
-demo/generate.py       seeded personas, four bank layouts, two tampered variants → demo/data/
+demo/generate.py       seeded personas, four bank layouts, two tampered variants → demo/data/ (synthetic; see demo/README.md)
 eval/run.py            the table above, offline
 tests/                 offline suite
 ```
 
 ## Tests
 
-134 test functions (259 collected cases), all offline: every bank layout; comma decimals and every money spelling; each category rule; running balance catching an edited line in every layout; payslip mismatch and the 2% tolerance; feature maths on a hand-built ledger; every band boundary; monotonicity on the ledger and on random vectors; `explain()` summing to the total; `FeatureVector(race=...)` raising; proxy audit excluding tithes, maintenance, medical and Home Affairs and keeping hospital salaries; disparate impact ≈ 1.0 on random groups; PII never in logs or `MockModel` prompts; purge; generator determinism; CLI smoke.
+139 test functions (294 collected cases), all offline: every bank layout; comma decimals and every money spelling; each category rule; running balance catching an edited line in every layout; payslip mismatch and the 2% tolerance; feature maths on a hand-built ledger; every band boundary; monotonicity on the ledger and on random vectors; `explain()` summing to the total; `FeatureVector(race=...)` raising; proxy audit excluding tithes, maintenance, medical and Home Affairs and keeping hospital salaries; disparate impact ≈ 1.0 on random groups; PII never in logs or `MockModel` prompts; purge; generator determinism; CLI smoke; and (`tests/test_regressions.py`) the clipped-score fact line and that every shipped ID number has an impossible birth date.
 
 ```bash
 pytest tests/ -q && ruff check . && python eval/run.py
 ```
 
-## Author
+---
 
-Darrshan Govender · [LeasEase](https://leasease.co.za) · [Agulhas Code](https://agulhascode.co.za) · Durban, South Africa
+Built by [Darrshan Govender](https://github.com/darrshangovender) · [Agulhas Code](https://agulhascode.co.za)

@@ -15,7 +15,7 @@ from affordability.rationale import (
 )
 from affordability.score import explain, score_features
 
-SA_ID = "9205244136087"
+SA_ID = "9202304136081"
 
 
 @pytest.fixture

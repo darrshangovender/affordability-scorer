@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "affordability-scorer: explainable, POPIA-aware tenant affordability scoring for South African rentals"
+type: software
+version: 0.1.1
+date-released: 2026-10-14
+license: MIT
+repository-code: "https://github.com/darrshangovender/affordability-scorer"
+url: "https://github.com/darrshangovender/affordability-scorer"
+authors:
+  - family-names: Govender
+    given-names: Darrshan
+    email: darrshangovender@gmail.com
+keywords:
+  - affordability
+  - tenant-screening
+  - popia
+  - explainable-scoring
+  - fairness
+  - south-africa
+abstract: >-
+  Parses South African bank statements and payslips, runs document-consistency (tamper)
+  checks, derives money-only features after a proxy audit, and scores affordability with a
+  monotone points table whose explanation is the score itself. Synthetic demo data only.

@@ -1,12 +1,24 @@
 [project]
 name = "affordability-scorer"
-version = "0.1.0"
+version = "0.1.1"
 description = "Explainable, POPIA-aware tenant affordability scoring for South African rentals."
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
 authors = [{ name = "Darrshan Govender", email = "darrshangovender@gmail.com" }]
 keywords = ["affordability", "tenant-screening", "popia", "explainable-scoring", "fairness", "south-africa"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Framework :: Pydantic :: 2",
+    "Topic :: Office/Business :: Financial",
+]
 dependencies = [
     "pydantic>=2.7",
     "numpy>=1.26",
@@ -22,6 +34,7 @@ dev = [
 
 [project.urls]
 Homepage = "https://github.com/darrshangovender/affordability-scorer"
+Repository = "https://github.com/darrshangovender/affordability-scorer"
 Issues = "https://github.com/darrshangovender/affordability-scorer/issues"
 
 [project.scripts]
@@ -47,5 +60,8 @@ target-version = "py311"
 # Explicit selection so the result does not drift with ruff's default rule set.
 # E402 is on so the deliberate `# noqa: E402` markers in demo/ and eval/ remain
 # load-bearing: those imports must follow the sys.path bootstrap above them.
-select = ["E4", "E7", "E9", "F", "I", "B", "RUF"]
-ignore = ["RUF001", "RUF002", "RUF003"]  # ambiguous unicode: "·" is used on purpose in docs
+select = ["E", "F", "W", "I", "B", "UP", "RUF"]
+# RUF001-003: ambiguous unicode ("·" is used on purpose in docs).
+# E501: the long lines are reason strings shown to tenants and landlords, and regexes;
+# splitting them makes the user-facing text harder to review.
+ignore = ["E501", "RUF001", "RUF002", "RUF003"]

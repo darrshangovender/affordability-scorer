@@ -9,7 +9,7 @@ from affordability.pipeline import score_application
 from affordability.privacy import AccessLog, ScoringPurpose
 from affordability.rationale import MockModel
 
-SA_ID = "9205244136087"
+SA_ID = "9202304136081"
 
 
 @pytest.fixture

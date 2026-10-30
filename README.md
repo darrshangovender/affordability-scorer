@@ -11,7 +11,7 @@
 
 A rental agent in Durban gets a PDF statement, a payslip and a WhatsApp saying "can they afford R7 800?". Today that question is answered by a rule of thumb (rent under a third of income), a gut feel about the applicant, or a credit-bureau report that says nothing about whether this person can carry *this* rent. The gut feel is where discrimination lives, and the bureau report is where POPIA problems live.
 
-This package is the Tenant Score pattern behind [LeasEase](https://leasease.co.za), released as a standalone library: deterministic, offline, testable, and built so that the fairness and privacy guarantees are structural rather than policy.
+This package is a standalone tenant affordability scoring library: deterministic, offline, testable, and built so that the fairness and privacy guarantees are structural rather than policy.
 
 ## A note on fairness and law
 
